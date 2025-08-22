@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "forex-trading-bot"
+version = "0.1.0"
+description = "A fully-automated Forex trading system with an AI-driven strategy lab."
+authors = ["Jules AI <jules@example.com>"]
+license = "MIT"
+readme = "docs/README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pyside6 = "^6.7.0"
+metatrader5 = "^5.0.45"
+pyyaml = "^6.0.1"
+sqlmodel = "^0.0.16"
+pandas = "^2.2.1"
+numpy = "^1.26.4"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.1"
+pyinstaller = "^6.5.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
