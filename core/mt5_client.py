@@ -88,7 +88,7 @@ class MT5Client:
         info = mt5.account_info()
         return info._asdict() if info else None
 
-    def get_market_data(self, symbol: str, timeframe: int, count: int) -> Optional[pd.DataFrame]:
+    def get_market_data(self, symbol: str, timeframe: int, count: int, parse_dates: bool = True) -> Optional[pd.DataFrame]:
         """
         Fetches historical price data (OHLC) for a given symbol.
 
@@ -96,6 +96,7 @@ class MT5Client:
             symbol: The financial instrument (e.g., "EURUSD").
             timeframe: The timeframe constant from MT5 (e.g., mt5.TIMEFRAME_H1).
             count: The number of bars to retrieve.
+            parse_dates: Whether to convert the 'time' column to datetime objects. Defaults to True.
 
         Returns:
             A pandas DataFrame with OHLC data, or None if an error occurs.
@@ -110,7 +111,8 @@ class MT5Client:
             return None
 
         df = pd.DataFrame(rates)
-        df['time'] = pd.to_datetime(df['time'], unit='s')
+        if parse_dates:
+            df['time'] = pd.to_datetime(df['time'], unit='s')
         return df
 
     def place_order(self, symbol: str, order_type: int, volume: float, sl: float = 0.0, tp: float = 0.0, magic: int = 12345, comment: str = "trade_bot") -> Optional[int]:
