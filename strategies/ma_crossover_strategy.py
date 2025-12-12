@@ -47,7 +47,8 @@ class MovingAverageCrossoverStrategy(BaseStrategy):
         # We fetch a bit more for stability.
         num_candles = self.long_ma_period + 5
 
-        market_data = client.get_market_data(symbol, self.timeframe, num_candles)
+        # Optimization: Don't parse dates as we only need OHLC values for calculation
+        market_data = client.get_market_data(symbol, self.timeframe, num_candles, parse_dates=False)
 
         if market_data is None or len(market_data) < self.long_ma_period:
             # Not enough data to compute the moving averages
