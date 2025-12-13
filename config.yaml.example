@@ -1,0 +1,42 @@
+
+# -----------------------------------------------------------------------------
+# Zeta Trading Bot Configuration
+# -----------------------------------------------------------------------------
+
+# --- MT5 Accounts ---
+# List your MetaTrader 5 accounts here.
+# NOTE: Password storage in plain text is for MVP only. use environment variables in prod.
+accounts:
+  - account_id: 12345678
+    password: "your_password"
+    server: "MetaQuotes-Demo"
+    enabled: true
+  - account_id: 87654321
+    password: "another_password"
+    server: "MetaQuotes-Demo"
+    enabled: false
+
+# --- Risk Management ---
+# Global risk settings enforced by the engine.
+risk_management:
+  max_open_trades: 5          # Maximum number of concurrent open trades per account
+  max_daily_loss_pct: 2.0     # Maximum daily loss as a percentage of equity (example)
+  max_drawdown_pct: 5.0       # Hard stop if drawdown exceeds this %
+
+# --- Application Settings ---
+app_settings:
+  log_level: "INFO"           # DEBUG, INFO, WARNING, ERROR
+  update_interval_sec: 1      # Main loop tick rate (superseded by event wait in engine)
+
+# --- Strategy Settings ---
+# Default parameters for strategies if not loaded from DB.
+strategies:
+  ma_crossover:
+    symbol: "EURUSD"
+    timeframe: "H1"
+    short_ma: 20
+    long_ma: 50
+
+# --- UI Settings ---
+ui:
+  theme: "dark"

@@ -41,7 +41,7 @@ class Config:
     """
     _instance: Optional['Config'] = None
 
-    def __new__(cls) -> 'Config':
+    def __new__(cls, *args, **kwargs) -> 'Config':
         if cls._instance is None:
             cls._instance = super(Config, cls).__new__(cls)
             cls._instance._initialized = False

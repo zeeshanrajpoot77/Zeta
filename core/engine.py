@@ -26,7 +26,7 @@ class TradingEngine(threading.Thread):
     def __init__(self):
         super().__init__()
         self.daemon = True  # Allows main program to exit even if this thread is running
-        self._is_running = False
+        self._stop_event = threading.Event()
         self.clients: List[MT5Client] = []
         self.loaded_strategies: List[BaseStrategy] = []
 
@@ -72,14 +72,14 @@ class TradingEngine(threading.Thread):
 
     def run(self):
         """The main trading loop of the engine."""
-        self._is_running = True
+        self._stop_event.clear()
         log.info("Trading engine started.")
 
         # Connect all clients
         for client in self.clients:
             client.connect()
 
-        while self._is_running:
+        while not self._stop_event.is_set():
             try:
                 for client in self.clients:
                     if not client.is_connected():
@@ -107,11 +107,12 @@ class TradingEngine(threading.Thread):
                             client.place_order(symbol, order_type=1, volume=0.01) # 1 = ORDER_TYPE_SELL
 
                 # Pause for a configurable interval to avoid excessive CPU usage
-                time.sleep(60)  # Check for signals every minute
+                # Wait on the event allows immediate wake-up on stop
+                self._stop_event.wait(60)
 
             except Exception as e:
                 log.error(f"An error occurred in the trading loop: {e}", exc_info=True)
-                time.sleep(60) # Wait before retrying after an error
+                self._stop_event.wait(60) # Wait before retrying after an error
 
         # Disconnect all clients on exit
         for client in self.clients:
@@ -126,6 +127,5 @@ class TradingEngine(threading.Thread):
     def stop_engine(self):
         """Stops the trading engine thread gracefully."""
         log.info("Stopping trading engine...")
-        self._is_running = False
+        self._stop_event.set()
         # The join() will be called from the main thread to wait for this thread to finish
-        # For now, we just set the flag. A more robust shutdown might use an Event.
