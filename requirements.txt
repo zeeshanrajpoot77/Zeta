@@ -1,0 +1,7 @@
+
+MetaTrader5
+PySide6
+pandas
+numpy
+sqlmodel
+pyyaml
