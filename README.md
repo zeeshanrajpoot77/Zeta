@@ -1,6 +1,6 @@
 # ⚡ Zeta Trading Bot
 
-![Zeta Banner](https://via.placeholder.com/1200x300/0f172a/38bdf8?text=ZETA+TRADING+BOT)
+![Zeta Banner](assets/banner.svg)
 
 > **Speed. Efficiency. Precision.**
 > A high-performance, Python-based algorithmic trading framework for MetaTrader 5 (MT5).
@@ -83,9 +83,7 @@ The GUI will launch. Click **"Start Engine"** to begin trading.
 
 ## 📸 Application Preview
 
-*(Placeholder for Screen Grab)*
-
-![UI Screenshot](https://via.placeholder.com/800x500/1e293b/94a3b8?text=Zeta+Dashboard+UI)
+![UI Screenshot](assets/ui_preview.svg)
 
 *The dashboard features real-time logs, engine status control, and strategy monitoring.*
 

@@ -1,0 +1,12 @@
+<svg width="1200" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="300" fill="url(#grad1)" />
+  <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="#38bdf8" text-anchor="middle" alignment-baseline="middle" letter-spacing="5">ZETA TRADING BOT</text>
+  <line x1="300" y1="180" x2="900" y2="180" stroke="#38bdf8" stroke-width="2" />
+  <text x="50%" y="220" font-family="Arial, sans-serif" font-size="24" fill="#94a3b8" text-anchor="middle">SPEED. EFFICIENCY. PRECISION.</text>
+</svg>
